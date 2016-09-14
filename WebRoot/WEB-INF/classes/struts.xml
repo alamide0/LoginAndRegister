@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- Spring整合Struts时，其中的action对象由Spring容器创建-->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 其中name表示为在整合时Spring配置文件中<bean>的name值 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.objectFactory.spring.autoWrite" value="name" />
+	<package name="loginModule" namespace="/" extends="struts-default">
+		<global-results>
+			<result name="error" type="redirect">/login.jsp</result>
+		</global-results>
+		<action name="login" class="com.logistics.actions.LoginAction">
+			<result name="success" type="dispatcher">/welcome.jsp</result>
+			<result name="error" type="dispatcher">/errorlogin.jsp</result>
+		</action>
+		<action name="register" class="com.logistics.actions.RegisterAction">
+			<result name="success" type="dispatcher">/login.jsp</result>
+			<result name="error" type="dispatcher">/errorregister.jsp</result>
+			
+		</action>
+	</package>
+</struts>
